@@ -28,11 +28,10 @@ const toggleFAQ = (i) => {
         : 'assets/images/icon-minus.svg';
 };
 
-// Function to move focus with Arrow Keys (⬆️⬇️)
+// Function to move focus with Arrow Keys 
 const moveFocus = (currentIndex, direction) => {
     let newIndex = currentIndex + direction;
 
-    // Ensure the index stays within valid bounds
     if (newIndex >= 0 && newIndex < faqs.length) {
         faqs[newIndex].focus();
     }
@@ -46,12 +45,12 @@ faqs.forEach((faq, i) => {
     // Keyboard navigation
     faq.addEventListener('keydown', (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault(); // Prevent scrolling on Spacebar press
+            event.preventDefault(); 
             toggleFAQ(i);
         } else if (event.key === 'ArrowDown') {
-            moveFocus(i, 1); // Move to the next FAQ (⬇️)
+            moveFocus(i, 1); 
         } else if (event.key === 'ArrowUp') {
-            moveFocus(i, -1); // Move to the previous FAQ (⬆️)
+            moveFocus(i, -1); 
         }
     });
 });
