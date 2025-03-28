@@ -30,6 +30,7 @@ body {
     background-position: top;
     background-size: 100%;
     background-attachment: fixed;
+    font-size: 16px;
   }
 
   header{
@@ -37,15 +38,46 @@ body {
     border-radius: 10px;
     width: 50%;
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 40px;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
   }
+
+h1{
+  font-size: 50px;
+  color: var(--dark-purple);
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+h1 img{
+  margin-right: 20px;
+}
+
+h2 {
+  font-weight: 600;
+  color: var(--dark-purple);
+  font-size: 20px;
+  
+}
+
+P {
+  color: var(--grayish-purple);
+}
 
 .faq-accordion{
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 
 .faq-accordion-title{
   display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
 }
+
+.faq-accordion-title img{
+  margin-left: 40px;
+}
+
