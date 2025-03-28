@@ -60,6 +60,10 @@ h2 {
   
 }
 
+h2:hover{
+  color:#ad07d1;
+}
+
 P {
   color: var(--grayish-purple);
 }
@@ -74,12 +78,18 @@ P {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  cursor: pointer;
 
 }
 
 .faq-accordion-title img{
   margin-left: 40px;
 }
+
+.faq-accordion-title:hover {
+  color: var(--light-pink) !important;
+}
+
 
 .hidden{
   display: none;
