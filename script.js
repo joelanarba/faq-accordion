@@ -8,20 +8,50 @@ const btns = document.querySelectorAll('.btn');
 answers.forEach(answer => answer.classList.add('hidden'));
 btns.forEach(btn => btn.src = 'assets/images/icon-plus.svg');
 
-faqs.forEach((faq, i) => {
-    faq.addEventListener('click', function () {
-        // Close all other FAQs before opening the clicked one
-        answers.forEach((answer, j) => {
-            if (i !== j) { // If it's not the clicked one, close it
-                answer.classList.add('hidden');
-                btns[j].src = 'assets/images/icon-plus.svg';
-            }
-        });
+// Make questions focusable so users can use Tab to navigate
+faqs.forEach(faq => faq.setAttribute("tabindex", "0"));
 
-        // Toggle the clicked FAQ
-        answers[i].classList.toggle('hidden');
-        btns[i].src = answers[i].classList.contains('hidden')
-            ? 'assets/images/icon-plus.svg'
-            : 'assets/images/icon-minus.svg';
+// Function to toggle FAQs (on click or keypress)
+const toggleFAQ = (i) => {
+    // Close all other FAQs before opening a new one
+    answers.forEach((answer, j) => {
+        if (i !== j) { 
+            answer.classList.add('hidden');
+            btns[j].src = 'assets/images/icon-plus.svg';
+        }
+    });
+
+    // Toggle the clicked FAQ
+    answers[i].classList.toggle('hidden');
+    btns[i].src = answers[i].classList.contains('hidden')
+        ? 'assets/images/icon-plus.svg'
+        : 'assets/images/icon-minus.svg';
+};
+
+// Function to move focus with Arrow Keys (⬆️⬇️)
+const moveFocus = (currentIndex, direction) => {
+    let newIndex = currentIndex + direction;
+
+    // Ensure the index stays within valid bounds
+    if (newIndex >= 0 && newIndex < faqs.length) {
+        faqs[newIndex].focus();
+    }
+};
+
+// Add event listeners for click & keyboard navigation
+faqs.forEach((faq, i) => {
+    // Click to toggle FAQ
+    faq.addEventListener('click', () => toggleFAQ(i));
+
+    // Keyboard navigation
+    faq.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault(); // Prevent scrolling on Spacebar press
+            toggleFAQ(i);
+        } else if (event.key === 'ArrowDown') {
+            moveFocus(i, 1); // Move to the next FAQ (⬇️)
+        } else if (event.key === 'ArrowUp') {
+            moveFocus(i, -1); // Move to the previous FAQ (⬆️)
+        }
     });
 });
